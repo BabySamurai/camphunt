@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: camphunt
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: camphunt
+  template:
+    metadata:
+      labels:
+        app: camphunt
+    spec:
+      containers:
+        - name: camphunt
+          image: spystra/camphunt:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: "development"
+            - name: DB_URL
+              value: "mongodb://mongo:27017/camphunt"
+            - name: SECRET
+              value: "your-secret-key"
+            - name: CLOUDINARY_CLOUD_NAME
+              value: "djwhk4daz"
+            - name: CLOUDINARY_KEY
+              value: "215578954635155"
+            - name: CLOUDINARY_SECRET
+              value: "0DodFngYm9najJakfC8JUH20kQ8"
+            - name: MAPBOX_TOKEN
+              value: "pk.eyJ1IjoiYXJ0c3lwcyIsImEiOiJjbTNycGR2bGMwNnp3MmtzMXN5eHR5OHRoIn0.hCSfuIZajNWSqiv5Rj2big"

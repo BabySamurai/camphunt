@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building the Docker image...'
-                    sh 'docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .'
+                    bat 'docker build -t %DOCKER_IMAGE%:%DOCKER_TAG% .'
                 }
             }
         }
@@ -22,9 +22,9 @@ pipeline {
             steps {
                 script {
                     echo 'Scanning the Docker image for vulnerabilities using Trivy...'
-                    sh '''
+                    bat '''
                     docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
-                        aquasec/trivy image --severity ${TRIVY_SEVERITY} ${DOCKER_IMAGE}:${DOCKER_TAG}
+                        aquasec/trivy image --severity %TRIVY_SEVERITY% %DOCKER_IMAGE%:%DOCKER_TAG%
                     '''
                 }
             }
@@ -35,9 +35,9 @@ pipeline {
                 script {
                     echo 'Pushing the Docker image to Docker Hub...'
                     withCredentials([usernamePassword(credentialsId: "${REGISTRY_CREDENTIALS}", usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                        sh '''
-                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                        docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
+                        bat '''
+                        docker login -u "%DOCKER_USER%" -p "%DOCKER_PASS%"
+                        docker push %DOCKER_IMAGE%:%DOCKER_TAG%
                         '''
                     }
                 }
