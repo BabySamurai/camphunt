@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'spystra/camphunt' // Replace with your Docker Hub username and image name
         DOCKER_TAG = 'latest' // You can replace this with dynamic tags if needed, e.g., a Git commit hash
-        REGISTRY_CREDENTIALS = 'aa5002d7-b7b7-4fdd-be65-bf63e8f1a980' // Replace with your Jenkins credentials ID for Docker Hub
+        REGISTRY_CREDENTIALS = 'b7395517-d211-4179-8f7f-017ee0e7ae24' // Replace with your Jenkins credentials ID for Docker Hub
         TRIVY_SEVERITY = 'CRITICAL,HIGH' // Define the vulnerability levels to scan
     }
 
