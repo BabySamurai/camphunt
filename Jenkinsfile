@@ -57,5 +57,3 @@ pipeline {
         }
     }
 }
-
-helm upgrade --install camphunt ./camphunt
