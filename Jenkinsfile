@@ -49,9 +49,9 @@ pipeline {
             steps {
                 script {
                     echo 'Starting Minikube...'
-                    bat '''
-                    minikube status || minikube start --driver=docker
-                    '''
+                    //bat '''
+                    //minikube status || minikube start --driver=docker
+                    //'''
                 }
             }
         }
