@@ -50,7 +50,7 @@ pipeline {
                 script {
                     echo 'Starting Minikube...'
                     bat '''
-                    minikube start --driver=docker
+                    minikube status || minikube start --driver=docker
                     '''
                 }
             }
